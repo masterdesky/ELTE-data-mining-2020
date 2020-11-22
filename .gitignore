@@ -1,5 +1,7 @@
 # Exclude large datafiles
 data/
+# Exlide pycache
+__pycache__/
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
