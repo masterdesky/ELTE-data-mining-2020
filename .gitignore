@@ -1,5 +1,7 @@
 # Exclude large datafiles
 data/
+# Exclude large models
+models/
 # Exlide pycache
 __pycache__/
 
