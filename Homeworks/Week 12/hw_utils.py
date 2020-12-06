@@ -50,11 +50,12 @@ def accuracy_metric(y_test, y_pred):
 
 
 def plot_confusion_matrix(conf_mat, y, labels=None, title=None,
-                          textsize=26, save=False, save_filename='image'):
+                          figsize=8, textsize=26,
+                          save=False, save_filename='image'):
     """
     Plots a confusion matrix.
     """
-    fig, axes = plt.subplots(figsize=(14,14))
+    fig, axes = plt.subplots(figsize=(figsize,figsize))
     axes.set_aspect('equal')
 
     im = axes.imshow(conf_mat)
