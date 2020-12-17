@@ -15,6 +15,9 @@ from sklearn.metrics import confusion_matrix
 from sklearn.preprocessing import label_binarize
 from sklearn.metrics import roc_curve, auc, roc_auc_score
 
+data = './data/'
+out = './out/'
+
 axistitlesize = 20
 axisticksize = 17
 axislabelsize = 26

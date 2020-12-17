@@ -1,0 +1,146 @@
+\usepackage[utf8]{inputenc}
+\usepackage[magyar, english]{babel}
+\usepackage[T1]{fontenc}
+
+%----------------------------------------------------------------------------------------
+%	MATH PACKAGES
+%----------------------------------------------------------------------------------------
+
+% Banish bad characters from this realm
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+\usepackage{amsmath, amssymb, mathrsfs}
+\usepackage{mathtools}
+\usepackage{cancel}
+\usepackage{braket}
+
+%----------------------------------------------------------------------------------------
+%	DEFINING NEW FUNCTIONS
+%----------------------------------------------------------------------------------------
+
+% --------- MATH MODE ---------
+% Equation numbering per section
+\numberwithin{equation}{section}
+
+% \cdot instead of asterisk (*) symbol
+\mathcode`\*="8000
+{\catcode`\*\active\gdef*{\cdot}}
+% Double underline
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+% Derivate
+\newcommand{\D}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand{\Dpart}[1]{\ensuremath{\frac{\operatorname{d}}{\operatorname{d}\!{#1}}}}
+
+% --------- OTHER ---------
+% Quotes
+\usepackage[autostyle=false]{csquotes}
+\newcommand{\q}[1]{„#1''} % Redefine quotations
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT FORMATTING
+%----------------------------------------------------------------------------------------
+
+% Section titles
+\usepackage{titlesec}
+\titleformat{\section}{\bfseries\Large}{\thesection. }{0em}{}
+\titleformat{\subsection}{\bfseries\large}{\thesubsection. }{0em}{}
+
+% Spacing and indentation
+% First paragraph is indented after titles
+\usepackage{indentfirst}
+\setlength{\parindent}{20pt} % Indentation of paragraphs
+\setlength{\parskip}{3pt}    % Skip between paragraphs (/par)
+
+% Custom footnote text
+\newcommand{\customfootnotetext}[2]{{% Group to localize change to footnote
+\renewcommand{\thefootnote}{#1}% Update footnote counter representation
+\footnotetext[0]{#2}}}% Print footnote text
+
+%----------------------------------------------------------------------------------------
+%	OTHERS
+%----------------------------------------------------------------------------------------
+
+% Required for inserting image files
+\usepackage{graphicx}
+\usepackage[skip=2pt, font={small}, justification=centering]{caption}
+\usepackage[justification=centering]{subcaption}
+
+% Enumeration style
+\usepackage{enumitem}
+
+% Hyperlinks
+\usepackage[unicode]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    citecolor = cyan,
+    pdftitle={Data Mining - Main Project - PB}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+% Using biblatex with bibtex backend and natbib citation styles (natbib=true, backend=bibtex)
+% In bibliography, citations are numbered by appearance (bibstyle=numeric)
+\usepackage[citestyle=authoryear, bibstyle=numeric, natbib=true, backend=bibtex, sorting=none]{biblatex}
+\addbibresource{bibliography.bib}
+
+% Hyperlink both author and year in citations
+% Taken from stackexchange: https://tex.stackexchange.com/questions/1687/hyperlink-name-with-biblatex-authoryear/25972
+% The answer originates from here: https://groups.google.com/forum/#!topic/comp.text.tex/rSPhG2jd3Ks
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{citeyear}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{citeyear}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+  \printtext[bibhyperref]{ \usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\textcite}
+  {\boolfalse{cbx:parens}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{textcite}}}
+  {\ifbool{cbx:parens}
+     {\bibcloseparen\global\boolfalse{cbx:parens}}
+     {}%
+   \multicitedelim}
+  {\usebibmacro{textcite:postnote}}
